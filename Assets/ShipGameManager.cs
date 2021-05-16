@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
+using TMPro;
 
 public class ShipGameManager : Singleton<ShipGameManager>
 {
@@ -15,11 +17,30 @@ public class ShipGameManager : Singleton<ShipGameManager>
     public List<bool> gameSwitches = new List<bool>(new bool[4]);
     public List<string> gameOperations = new List<string>(new string[4]);
     public string game1Operation = "and";
+
+    public int points = 0;
+    public int maxPoints = 10;
+    public int lifes = 2;
+    public int qtdEasy = 4;
+    public int qtdHard = 5;
+
+    public TextMeshProUGUI pointText;
+    public TextMeshProUGUI lifesText;
+
+    public GameObject game1;
+    public GameObject game2;
+    public LogicGameEasy gameEasy;
+    public LogicGameHard gameHard;
     // Start is called before the first frame update
     protected override void Awake()
     {
         IsPersistentBetweenScenes = false;
         base.Awake();
+    }
+
+    void Start() {
+        lifesText.text = "Limite de erros: " + lifes.ToString();
+        pointText.text = "Circuitos funcionando: " + points.ToString() + "/" + maxPoints.ToString();
     }
 
     public void SetGameArray(bool value, int position) {
@@ -45,16 +66,6 @@ public class ShipGameManager : Singleton<ShipGameManager>
                     midTrail2Active.SetActive(false);
                 }
             }
-            /*if (position == 3) {
-                bool active = gameOperations[2] == "and" ? midTrail1Active.activeSelf && midTrail2Active.activeSelf : midTrail1Active.activeSelf || midTrail2Active.activeSelf;
-                if (active) {
-                    midTrail2.SetActive(false);
-                    midTrail2Active.SetActive(true);
-                } else {
-                    midTrail2.SetActive(true);
-                    midTrail2Active.SetActive(false);
-                }
-            }*/
         }
     }
 
@@ -81,38 +92,61 @@ public class ShipGameManager : Singleton<ShipGameManager>
                     midTrail2Active.SetActive(false);
                 }
             }
-            /*if (position == 3) {
-                bool active = gameOperations[2] == "and" ? midTrail1Active.activeSelf && midTrail2Active.activeSelf : midTrail1Active.activeSelf || midTrail2Active.activeSelf;
-                if (active) {
-                    midTrail2.SetActive(false);
-                    midTrail2Active.SetActive(true);
-                } else {
-                    midTrail2.SetActive(true);
-                    midTrail2Active.SetActive(false);
-                }
-            }*/
         }
+    }
+
+    public void GenerateNewGame() {
+        bool isHard = qtdHard > 0 && (qtdEasy == 0 || Random.Range(0.0f, 1.0f) > 0.5);
+        if (!isHard) {
+            qtdEasy --;
+            game1.SetActive(true);
+            game2.SetActive(false);
+            gameEasy.GenerateNewGame();
+            gameType = "easy";
+            return;
+        }
+        gameType = "hard";
+        qtdHard--;
+        game2.SetActive(true);
+        game1.SetActive(false);
+        gameHard.GenerateNewGame();
     }
 
     public void Send() {
         if (gameType == "easy") {
             bool winner = gameOperations[0] == "and" ? gameSwitches[0] && gameSwitches[1] : gameSwitches[0] || gameSwitches[1];
             if (!winner) {
-                // losthp
-                Debug.Log("Wrong");
+                lifes--;
+                lifesText.text = "Limite de erros: " + lifes.ToString();
+                if (lifes < 0) {
+                    SceneManager.LoadScene("GameOverLogic");
+                }
             } else {
-                Debug.Log("Correct");
-                // add point, generate new game
+                points++;
+                pointText.text = "Circuitos funcionando: " + points.ToString() + "/" + maxPoints.ToString();
+                if (points > maxPoints) {
+                    SceneManager.LoadScene("CompleteLogic");
+                }
+                finalTrail.SetActive(true);
+                GenerateNewGame();
             }
         }
         if (gameType == "hard") {
             bool winner = gameOperations[2] == "and" ? midTrail1Active.activeSelf && midTrail2Active.activeSelf : midTrail1Active.activeSelf || midTrail2Active.activeSelf;
             if (!winner) {
-                // losthp
-                Debug.Log("Wrong");
+                lifes--;
+                lifesText.text = "Limite de erros: " + lifes.ToString();
+                if (lifes < 0) {
+                    SceneManager.LoadScene("GameOverLogic");
+                }
             } else {
-                Debug.Log("Correct");
-                // add point, generate new game
+                points++;
+                pointText.text = "Circuitos funcionando: " + points.ToString() + "/" + maxPoints.ToString();
+                if (points > maxPoints) {
+                    SceneManager.LoadScene("CompleteLogic");
+                }
+                finalTrailGame2.SetActive(true);
+                GenerateNewGame();
             }      
         }
     }

@@ -21,9 +21,7 @@ public class CameraShake : Singleton<CameraShake>
 
     public void ShaekCamera(float _shakeDuration = 0.0f) {
         canShake = true;
-        Debug.Log(_shakeDuration);
         shakeDuration = _shakeDuration > 0.0f ? _shakeDuration : 2f;
-        Debug.Log(shakeDuration);
     }
 
     void Start() {

@@ -9,6 +9,10 @@ public class LogicOperator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GenerateRandomLogicOperator();
+    }
+
+    public void GenerateRandomLogicOperator() {
         bool startWithOr = Random.Range(0.0f, 1.0f) > 0.5;
         if (startWithOr) {
             and.SetActive(false);
@@ -16,6 +20,8 @@ public class LogicOperator : MonoBehaviour
             ShipGameManager.Instance.SetGameOperation("or", position);
         }
         else {
+            or.SetActive(false);
+            and.SetActive(true);
             ShipGameManager.Instance.SetGameOperation("and", position);
         }
     }
@@ -28,12 +34,5 @@ public class LogicOperator : MonoBehaviour
         ShipGameManager.Instance.SetGameOperation(operation, position);
         this.and.SetActive(!this.and.activeSelf);
         this.or.SetActive(!this.or.activeSelf);
-        // tells gameManager the change
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -7,16 +7,14 @@ public class ButtonSwitch : MonoBehaviour
 {
     public int position = 0;
     public bool isOn = true;
-    private Image _image;
-    public Sprite switchOn;
+    public GameObject switchOff;
+    public GameObject switchOn;
     public GameObject xorImage;
     public GameObject trailActiveFinal;
     public GameObject trailActiveInit;
-    public Sprite switchOff;
     // Start is called before the first frame update
     void Start()
     {
-        this._image = GetComponent<Image>();
         GenerateRandomSwitch();
     }
 
@@ -25,7 +23,8 @@ public class ButtonSwitch : MonoBehaviour
         float randXor = Random.Range(0.0f, 1.0f); //enable xor with 0.5
         if (randInit > 0.5) {
             this.isOn = false;
-            this._image.sprite = this.switchOff;
+            switchOff.SetActive(true);
+            switchOn.SetActive(false);
               this.trailActiveInit.SetActive(false);
           if (randXor > 0.5) {
               this.xorImage.SetActive(true);
@@ -38,7 +37,8 @@ public class ButtonSwitch : MonoBehaviour
           }
         } else {
             this.isOn = true;
-            this._image.sprite = this.switchOn;
+            switchOff.SetActive(false);
+            switchOn.SetActive(true);
             trailActiveInit.SetActive(true);
             if (randXor > 0.5) {
                 this.xorImage.SetActive(true);
@@ -54,7 +54,14 @@ public class ButtonSwitch : MonoBehaviour
 
     public void SwitchClick() {
         this.isOn = !this.isOn;
-        this._image.sprite = this.isOn ? this.switchOn : this.switchOff;
+        if (isOn) {
+            this.switchOn.SetActive(true);
+            this.switchOff.SetActive(false);
+        } else {
+            
+            this.switchOn.SetActive(false);
+            this.switchOff.SetActive(true);
+        }
         this.trailActiveFinal.SetActive(!this.trailActiveFinal.activeSelf);
         ShipGameManager.Instance.SetGameArray(this.trailActiveFinal.activeSelf, position);
         this.trailActiveInit.SetActive(!this.trailActiveInit.activeSelf);
