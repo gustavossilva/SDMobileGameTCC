@@ -126,6 +126,7 @@ public class NumberGameManager :  Singleton<NumberGameManager>
             generateNewAnimator.SetTrigger("GenerateNew");
 
         } else {
+            CameraShake.Instance.ShaekCamera(0.5f);
             life--;
             if (life <= 0) {
                 SceneManager.LoadScene("GameOverBinary");
