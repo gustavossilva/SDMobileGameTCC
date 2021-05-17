@@ -508,7 +508,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Que pena, voc\xEA foi bloqueado pelo sistema da nave-m\xE3e!"
+  m_text: "O sistema de oxig\xEAnio ainda apresenta falhas! Tente novamente."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9a669aad79cdb0d4bad5e87f9dbe3921, type: 2}
   m_sharedMaterial: {fileID: -4953121542225284438, guid: 9a669aad79cdb0d4bad5e87f9dbe3921, type: 2}
@@ -876,7 +876,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: NumberGame
+          m_StringArgument: ShipGame
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &895755614

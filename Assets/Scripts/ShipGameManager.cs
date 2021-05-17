@@ -6,7 +6,7 @@ using TMPro;
 
 public class ShipGameManager : Singleton<ShipGameManager>
 {
-    public bool lockLogicOperators = true;
+    public bool lockLogicOperators = false;
     public string gameType = "easy";
     public GameObject finalTrail;
     public GameObject finalTrailGame2;
@@ -31,6 +31,7 @@ public class ShipGameManager : Singleton<ShipGameManager>
     public GameObject game2;
     public LogicGameEasy gameEasy;
     public LogicGameHard gameHard;
+    public Animator oxygenAnimation;
     // Start is called before the first frame update
     protected override void Awake()
     {
@@ -128,7 +129,8 @@ public class ShipGameManager : Singleton<ShipGameManager>
                     SceneManager.LoadScene("CompleteLogic");
                 }
                 finalTrail.SetActive(true);
-                GenerateNewGame();
+                oxygenAnimation.SetTrigger("InitOxygen");
+                //GenerateNewGame();
             }
         }
         if (gameType == "hard") {
@@ -146,7 +148,8 @@ public class ShipGameManager : Singleton<ShipGameManager>
                     SceneManager.LoadScene("CompleteLogic");
                 }
                 finalTrailGame2.SetActive(true);
-                GenerateNewGame();
+                oxygenAnimation.SetTrigger("InitOxygen");
+                //GenerateNewGame();
             }      
         }
     }

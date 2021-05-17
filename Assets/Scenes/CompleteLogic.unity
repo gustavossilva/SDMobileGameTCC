@@ -358,8 +358,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Parab\xE9ns! Voc\xEA conseguiu se comunicar e avisar sobre o problema
-    com sua nave. Agora vamos ao conserto!"
+  m_text: "Parab\xE9ns, voc\xEA conseguiu corrigir o sistema de oxig\xEAnio!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9a669aad79cdb0d4bad5e87f9dbe3921, type: 2}
   m_sharedMaterial: {fileID: -4953121542225284438, guid: 9a669aad79cdb0d4bad5e87f9dbe3921, type: 2}
