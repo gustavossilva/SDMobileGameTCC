@@ -40,6 +40,7 @@ public class NumberGameManager :  Singleton<NumberGameManager>
     }
     void Start()
     {
+        this.sendedText.text = "Mensagens enviadas: " + this.sendedMsg + "/" + this.maxPoints;
         audioSource = GetComponent<AudioSource>();
         GenerateNewNumber(true);
     }
@@ -56,7 +57,7 @@ public class NumberGameManager :  Singleton<NumberGameManager>
         if (!firstTime && signalRand) {
             this.signalBitTimes++;
         }
-        this.useSignalBit = firstTime || this.signalBitTimes >= this.maxSignalBit ? false : signalRand;
+        this.useSignalBit = true; //firstTime || this.signalBitTimes >= this.maxSignalBit ? false : signalRand;
     }
 
     public void GetExpectedString(int decValue) {
@@ -117,9 +118,13 @@ public class NumberGameManager :  Singleton<NumberGameManager>
             ChangeButtonInteractable(false);
             this.sendedMsg++;
             this.sendedText.text = "Mensagens enviadas: " + this.sendedMsg + "/" + this.maxPoints;
-            if (sendedMsg == 20) {
-                // Set the game as completed on save file
-                SceneManager.LoadScene("CompleteBinary");
+            if (sendedMsg == maxPoints) {
+                PlayerPrefs.SetInt("finished1", 1);
+                if (PlayerPrefs.GetInt("finished2", 0) > 0) {
+                    SceneManager.LoadScene("Victory");
+                } else {
+                    SceneManager.LoadScene("CompleteBinary");
+                }
             }
             audioSource.clip = successClip;
             audioSource.Play();

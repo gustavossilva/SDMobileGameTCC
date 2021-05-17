@@ -1,8 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ShipGameManager : Singleton<ShipGameManager>
 {
@@ -32,6 +32,10 @@ public class ShipGameManager : Singleton<ShipGameManager>
     public LogicGameEasy gameEasy;
     public LogicGameHard gameHard;
     public Animator oxygenAnimation;
+    public AudioSource audioSource;
+    public AudioClip failSFX;
+    public AudioClip successClip;
+    public Button sendButton;
     // Start is called before the first frame update
     protected override void Awake()
     {
@@ -40,6 +44,7 @@ public class ShipGameManager : Singleton<ShipGameManager>
     }
 
     void Start() {
+        audioSource = GetComponent<AudioSource>();
         lifesText.text = "Limite de erros: " + lifes.ToString();
         pointText.text = "Circuitos funcionando: " + points.ToString() + "/" + maxPoints.ToString();
     }
@@ -97,6 +102,7 @@ public class ShipGameManager : Singleton<ShipGameManager>
     }
 
     public void GenerateNewGame() {
+        sendButton.interactable = true;
         bool isHard = qtdHard > 0 && (qtdEasy == 0 || Random.Range(0.0f, 1.0f) > 0.5);
         if (!isHard) {
             qtdEasy --;
@@ -117,39 +123,57 @@ public class ShipGameManager : Singleton<ShipGameManager>
         if (gameType == "easy") {
             bool winner = gameOperations[0] == "and" ? gameSwitches[0] && gameSwitches[1] : gameSwitches[0] || gameSwitches[1];
             if (!winner) {
+                audioSource.clip = failSFX;
+                audioSource.Play();
                 lifes--;
                 lifesText.text = "Limite de erros: " + lifes.ToString();
                 if (lifes < 0) {
                     SceneManager.LoadScene("GameOverLogic");
                 }
             } else {
+                audioSource.clip = successClip;
+                audioSource.Play();
                 points++;
                 pointText.text = "Circuitos funcionando: " + points.ToString() + "/" + maxPoints.ToString();
                 if (points > maxPoints) {
-                    SceneManager.LoadScene("CompleteLogic");
+                    PlayerPrefs.SetInt("finished2", 1);
+                    if (PlayerPrefs.GetInt("finished1", 0) > 0) {
+                        SceneManager.LoadScene("Victory");
+                    } else {
+                        SceneManager.LoadScene("CompleteLogic");
+                    }
                 }
                 finalTrail.SetActive(true);
                 oxygenAnimation.SetTrigger("InitOxygen");
-                //GenerateNewGame();
+                sendButton.interactable = false;
             }
         }
         if (gameType == "hard") {
             bool winner = gameOperations[2] == "and" ? midTrail1Active.activeSelf && midTrail2Active.activeSelf : midTrail1Active.activeSelf || midTrail2Active.activeSelf;
             if (!winner) {
+                audioSource.clip = failSFX;
+                audioSource.Play();
                 lifes--;
                 lifesText.text = "Limite de erros: " + lifes.ToString();
                 if (lifes < 0) {
                     SceneManager.LoadScene("GameOverLogic");
                 }
             } else {
+                audioSource.clip = successClip;
+                audioSource.Play();
                 points++;
                 pointText.text = "Circuitos funcionando: " + points.ToString() + "/" + maxPoints.ToString();
                 if (points > maxPoints) {
-                    SceneManager.LoadScene("CompleteLogic");
+                    PlayerPrefs.SetInt("finished2", 1);
+                    if (PlayerPrefs.GetInt("finished1", 0) > 0) {
+                        SceneManager.LoadScene("Victory");
+                    } else {
+                        SceneManager.LoadScene("CompleteLogic");
+                    }                    
                 }
                 finalTrailGame2.SetActive(true);
                 oxygenAnimation.SetTrigger("InitOxygen");
-                //GenerateNewGame();
+                sendButton.interactable = false;
             }      
         }
     }
