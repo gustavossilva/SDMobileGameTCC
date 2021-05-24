@@ -120,7 +120,7 @@ public class NumberGameManager :  Singleton<NumberGameManager>
             this.sendedText.text = "Mensagens enviadas: " + this.sendedMsg + "/" + this.maxPoints;
             if (sendedMsg == maxPoints) {
                 PlayerPrefs.SetInt("finished1", 1);
-                if (PlayerPrefs.GetInt("finished2", 0) > 0) {
+                if (PlayerPrefs.GetInt("finished2", 0) > 0 && PlayerPrefs.GetInt("finished3", 0) > 0) {
                     SceneManager.LoadScene("Victory");
                 } else {
                     SceneManager.LoadScene("CompleteBinary");

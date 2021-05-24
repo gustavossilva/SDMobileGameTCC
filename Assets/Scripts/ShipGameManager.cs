@@ -165,7 +165,7 @@ public class ShipGameManager : Singleton<ShipGameManager>
                 pointText.text = "Circuitos funcionando: " + points.ToString() + "/" + maxPoints.ToString();
                 if (points > maxPoints) {
                     PlayerPrefs.SetInt("finished2", 1);
-                    if (PlayerPrefs.GetInt("finished1", 0) > 0) {
+                    if (PlayerPrefs.GetInt("finished1", 0) > 0 && PlayerPrefs.GetInt("finished3", 0) > 0) {
                         SceneManager.LoadScene("Victory");
                     } else {
                         SceneManager.LoadScene("CompleteLogic");

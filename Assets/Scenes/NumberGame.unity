@@ -4230,7 +4230,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Neste jogo voc\xEA deve enviar mensagens bin\xE1rias para a nave-m\xE3e
+  m_text: "Nesta tarefa voc\xEA deve enviar mensagens bin\xE1rias para a nave-m\xE3e
     convertendo os n\xFAmeros de sua linguagem alienigena.\n\nSua linguagem \xE9
     baseada em n\xFAmeros decimais, que se trata de um sistema n\xFAmerico que possui
     dez algarismos com os quais podemos formar qualquer n\xFAmero atrav\xE9s da lei

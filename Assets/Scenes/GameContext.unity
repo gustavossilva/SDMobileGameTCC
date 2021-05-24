@@ -800,7 +800,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -245.94212, y: -422.70328}
+  m_AnchoredPosition: {x: -152, y: -422.70328}
   m_SizeDelta: {x: 1374.8353, y: 759.1136}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &793759814
@@ -826,11 +826,11 @@ MonoBehaviour:
   m_text: "Voc\xEA \xE9 um alienigena explorando o espa\xE7o. No meio de sua explora\xE7\xE3o,
     uma falha nos motores o deixou a deriva e seu sistema de distribui\xE7\xE3o de
     oxig\xEAnio est\xE1 come\xE7ando a apresentar defeitos!\n\nPensando em se salvar,
-    voc\xEA criou uma lista de tarefas para sua sobreviv\xEAncia:\n\n - Primeiro
-    voc\xEA deve enviar uma mensagem para sua nave-m\xE3e para que seus colegas possam
-    te salvar.\n - Segundo voc\xEA deve tentar corrigir as falhas l\xF3gicas no sistema
-    de distribui\xE7\xE3o de oxig\xEAnio para que consiga se manter vivo at\xE9 o
-    resgate chegar."
+    voc\xEA criou uma lista de tarefas para sua sobreviv\xEAncia:\n\n - Voc\xEA deve
+    enviar uma mensagem para sua nave-m\xE3e para que seus colegas possam te salvar;\n-
+    Selecionar coordenadas de rotas de emerg\xEAncia;\n - Tentar corrigir as falhas
+    l\xF3gicas no sistema de distribui\xE7\xE3o de oxig\xEAnio para que consiga se
+    manter vivo at\xE9 o resgate chegar."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9a669aad79cdb0d4bad5e87f9dbe3921, type: 2}
   m_sharedMaterial: {fileID: -4953121542225284438, guid: 9a669aad79cdb0d4bad5e87f9dbe3921, type: 2}
@@ -857,12 +857,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 46
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 50
+  m_fontSizeMax: 46
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -1075,7 +1075,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -205, y: 261}
+  m_AnchoredPosition: {x: -144, y: 261}
   m_SizeDelta: {x: 1074.19, y: 1074.19}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1584325973
