@@ -743,7 +743,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Menu
+          m_StringArgument: GameSelect
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1105107149}
@@ -1208,7 +1208,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Voltar ao menu
+  m_text: Voltar para tarefas
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9a669aad79cdb0d4bad5e87f9dbe3921, type: 2}
   m_sharedMaterial: {fileID: -4953121542225284438, guid: 9a669aad79cdb0d4bad5e87f9dbe3921, type: 2}
